@@ -4,6 +4,7 @@ from Digger import digger
 from Butler import butler
 from Soldier import soldier
 from BodyBuilder import bodyBuilder
+from SwordOfWonder import swordOfWonder
 from Hoard import hoard
 from scanner import scan
 import Battle
@@ -18,13 +19,14 @@ def main():
     global p
     Tools.clearScreen()
     print """
-Welcome, adventurer. Your quest is about to begin. 
+Welcome, adventurer. Your quest is about to begin.
 Since you were young, your goal in life has been to find The Sword of Wonder.
 You have 100 days to complete your quest, before your sickness takes over your body, and leaves you as weak as a small puppy.
     """
     Tools.delay()
     Tools.clearScreen()
-    p = player(100, 20, 0)
+    #p = player(100, 20, 0)
+    p = player(100, 20000, 0)
     while(p.getHealth() > 0):
         givePlayerOptions()
     Tools.createDeathScene()
@@ -57,15 +59,15 @@ def visitForest():
     Tools.clearScreen()
 
 def determineOpponent():
-    opponentConstructors = [createGrunt, createDigger, createHoard, createButler, createSoldier, createBodyBuilder]
-    strengthThresholds = [30, 70, 90, 120, 160 ]
-    strengthThresholdsIndex = bisect.bisect_left(strengthThresholds, p.getStrength()) 
+    opponentConstructors = [createGrunt, createDigger, createHoard, createButler, createSoldier, createBodyBuilder, createSwordOfWonder]
+    strengthThresholds = [30, 70, 90, 120, 160, 200 ]
+    strengthThresholdsIndex = bisect.bisect_left(strengthThresholds, p.getStrength())
     if random.randint(0,100) < 25:
         if random.randint(0,1) == 1:
             strengthThresholdsIndex = max(0, strengthThresholdsIndex-1)
         else:
             strengthThresholdsIndex = min(len(strengthThresholds)-1, strengthThresholdsIndex + 1)
-    return opponentConstructors[strengthThresholdsIndex]() 
+    return opponentConstructors[strengthThresholdsIndex]()
 
 def createGrunt():
     return grunt(30 + random.randint(-5,5), 5 + random.randint(-2,2), random.randint(1,5))
@@ -84,6 +86,9 @@ def createSoldier():
 
 def createBodyBuilder():
     return bodyBuilder(1000, 90, 500)
+
+def createSwordOfWonder():
+    return swordOfWonder()
 
 def visitTown():
     Town.init(getPlayer())

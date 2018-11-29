@@ -141,7 +141,7 @@ def createBattleScene(playerHealth, playerMaxHealth, opponentHealth, opponentMax
   print "\n\n"
 
   fileA = open("ascii/myCharacter.txt").readlines()
-  fileB = open("ascii/"+name+".txt").readlines()
+  fileB = open("ascii/"+''.join(name.split())+".txt").readlines()
 
   startFileB = len(fileA) - len(fileB)
 

@@ -26,6 +26,8 @@ def init(player, opp):
 
 def enterBattleLoop():
     global battleOver
+    redraw(opponent.getName())
+    checkIfBattleOver()
     while(not battleOver):
         redraw(opponent.getName())
         giveBattleOptions()
@@ -85,6 +87,7 @@ def endBattle():
 
     wonBattle = opponent.getHealth() <= 0
     if wonBattle:
+        print 'dallas: this is ty[e of opponent {}'.format(type(opponent))
         opponent.playLoseScreen(p)
     else:
         p.playLoseScreen(opponent)
