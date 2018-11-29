@@ -3,67 +3,70 @@ import random
 
 class entity(object):
 
-	def __init__(self, health, strength, money):
-		self.name = "entity"
-		self.health = health
-		self.startingHealth = health
-		self.maxHealth = max(100, self.health)
-		self.strength = strength
-		self.money = money
-		self.bag = []
-		self.opponent = None
-		self.lastAttackDamage = 0
-		
+    def __init__(self, health, strength, money):
+        self.name = "entity"
+        self.health = health
+        self.startingHealth = health
+        self.maxHealth = max(100, self.health)
+        self.strength = strength
+        self.money = money
+        self.bag = []
+        self.opponent = None
+        self.lastAttackDamage = 0
 
-	def getStartingHealth(self):
-		return self.startingHealth
 
-	def replenish(self, hp):
-		self.health = min(self.maxHealth, self.health + hp)
+    def getStartingHealth(self):
+        return self.startingHealth
 
-	def inflict(self, damage):
-		self.health = max(self.health - damage, 0)
+    def replenish(self, hp):
+        self.health = min(self.maxHealth, self.health + hp)
 
-	def attack(self):
-		damage = self.strength + random.randint(-1 * self.strength/5, self.strength/5)
-		self.opponent.inflict(damage)
-		self.setLastAttackDamage(damage)
+    def inflict(self, damage):
+        self.health = max(self.health - damage, 0)
 
-	def setLastAttackDamage(self, damage):
-		self.lastAttackDamage = damage
+    def attack(self):
+        damage = self.strength + random.randint(-1 * self.strength/5, self.strength/5)
+        self.opponent.inflict(damage)
+        self.setLastAttackDamage(damage)
 
-	def getLastAttackDamage(self):
-		return self.lastAttackDamage
+    def setLastAttackDamage(self, damage):
+        self.lastAttackDamage = damage
 
-	def getHealth(self):
-		return self.health
+    def getLastAttackDamage(self):
+        return self.lastAttackDamage
 
-	def getStrength(self):
-		return self.strength
+    def getHealth(self):
+        return self.health
 
-	def increaseStrength(self, increase):
-		self.strength += increase
+    def getStrength(self):
+        return self.strength
 
-	def getMoney(self):
-		return self.money
+    def increaseStrength(self, increase):
+        self.strength += increase
 
-	def setOpponent(self, enemy):
-		self.opponent = enemy
+    def getMoney(self):
+        return self.money
 
-	def increaseMaxHealth(self, hp):
-		self.maxHealth += hp
+    def setOpponent(self, enemy):
+        self.opponent = enemy
 
-	def getMaxHealth(self):
-		return self.maxHealth
+    def increaseMaxHealth(self, hp):
+        self.maxHealth += hp
 
-	def getName(self):
-		return self.name
+    def getMaxHealth(self):
+        return self.maxHealth
 
-	def displayStats(self):
-		print "Name:", self.getName()
-		print "Max health:",self.getMaxHealth()
-		print "Current health:",self.getHealth()
-		print "Strength", self.getStrength()
-		print "Money", self.getMoney()
-		Tools.delay()
+    def getName(self):
+        return self.name
+
+    def playLoseScreen(self):
+        pass
+
+    def displayStats(self):
+        print "Name:", self.getName()
+        print "Max health:",self.getMaxHealth()
+        print "Current health:",self.getHealth()
+        print "Strength", self.getStrength()
+        print "Money", self.getMoney()
+        Tools.delay()
 

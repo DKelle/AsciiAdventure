@@ -6,48 +6,48 @@ days = 1
 message = ""
 
 def getAmount(greeting, errorMessage, cap):
-	print greeting
-	amount =  int(raw_input(">"))
-	if amount > cap:
-		print errorMessage, "", cap
-		return cap
-	return amount
+    print greeting
+    amount =  int(raw_input(">"))
+    if amount > cap:
+        print errorMessage, "", cap
+        return cap
+    return amount
 
 def incrementDays():
-	global days
-	days += 1
+    global days
+    days += 1
 def getDays():
-	global days
-	return days
+    global days
+    return days
 
 def clearScreen():
-	os.system('cls')
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def drawHealthPotion(num):
-	if num == 0:
-		return
-	print "Health potion *",num
-	print """
-	
+    if num == 0:
+        return
+    print "Health potion *",num
+    print """
+
 
         [~]
         |=|
       .-' '-.
       |-----|
       | ~~~ |
-      | ~~~ |	
+      | ~~~ |
       | XXX |
       |-----|
       '-----'
 
 
-	"""
+    """
 
 def drawStrengthPotion(num):
-	if num == 0:
-		return
-	print "Strength potion *",num
-	print """
+    if num == 0:
+        return
+    print "Strength potion *",num
+    print """
          []
         [||]
         ||||
@@ -63,31 +63,31 @@ def drawStrengthPotion(num):
        |-..'|
        `----`
 
-	"""
+    """
 
 def drawBag(itemList):
-	clearScreen()
-	drawHealthPotion(itemList["health potion"])
-	drawStrengthPotion(itemList["strength potion"])
+    clearScreen()
+    drawHealthPotion(itemList["health potion"])
+    drawStrengthPotion(itemList["strength potion"])
 
 
 
 def createPotionShop():
-	print """
-	Welcome to the potion shop!
+    print """
+    Welcome to the potion shop!
 
-	                          O
+                              O
                   _O_            )=(
          .--.     ) (           /   \\
         .'=='.  .'  _'.   ()    |__ |
         |____|  |  |  |  )""(   |  ||   {}
         |____|  |  |__| ( [] )  |__||   )(
-        |    |  |     |  )__(   |   |  (__) 
+        |    |  |     |  )__(   |   |  (__)
         '----'  '-----'         |___|           """
 
 def createSleeper():
-	clearScreen()
-	print """
+    clearScreen()
+    print """
 
 
          .--"-.-"-.
@@ -95,14 +95,14 @@ def createSleeper():
       /   __./__     \              /_
      ; .-'      `-.  ;            Z
      || ---    --- \ |          Z
-     /|  vvv   vvv  |\        Z 
-     \|     /       |/     z 
+     /|  vvv   vvv  |\        Z
+     \|     /       |/     z
       |    '--      |  z
       \   .-.-.     /
        '. `'''`  .'
        /'--._.--'\\
 
-	"""
+    """
 
 def createDeathScene():
   print """
@@ -140,8 +140,8 @@ def createBattleScene(playerHealth, playerMaxHealth, opponentHealth, opponentMax
 
   print "\n\n"
 
-  fileA = open("ascii\myCharacter.txt").readlines()
-  fileB = open("ascii\\"+name+".txt").readlines()
+  fileA = open("ascii/myCharacter.txt").readlines()
+  fileB = open("ascii/"+name+".txt").readlines()
 
   startFileB = len(fileA) - len(fileB)
 
@@ -168,31 +168,31 @@ def createBattleScene(playerHealth, playerMaxHealth, opponentHealth, opponentMax
   print "\n\n"
 
 def createPlayerHealthBar(health, maxHealth):
-	for i in range(0,3):
-		print "|",
-		print "*" * int(min(100*health/maxHealth/5, 20)),
-		print " " * int(20 - 100*health/maxHealth/5),
-		print "|",
-		if i == 1:
-			print "Health:", health
-		else:
-			print ""
+    for i in range(0,3):
+        print "|",
+        print "*" * int(min(100*health/maxHealth/5, 20)),
+        print " " * int(20 - 100*health/maxHealth/5),
+        print "|",
+        if i == 1:
+            print "Health:", health
+        else:
+            print ""
 
 
 
 def createOpponentHealthBar(health, maxHealth):
-	for i in range(0,3):
-		print "\t"*7,"|",
-		print "*" * int(min(100*health/maxHealth/5, 20)),	
-		print " " * int(20 - 100*health/maxHealth/5),
-		print "|",
-		if i == 1:
-			print "Health:", health
-		else:
-			print ""
+    for i in range(0,3):
+        print "\t"*7,"|",
+        print "*" * int(min(100*health/maxHealth/5, 20)),
+        print " " * int(20 - 100*health/maxHealth/5),
+        print "|",
+        if i == 1:
+            print "Health:", health
+        else:
+            print ""
 
 def delay(seconds):
-	time.sleep(seconds)
+    time.sleep(seconds)
 
 def delay():
-	raw_input("(press enter when ready)")
+    raw_input("(press enter when ready)")
